@@ -53,6 +53,7 @@ const reducer2 = (state = [], action) => {
       return [{ text: action.text, id: Date.now() }, ...state];
     case DELETE_TODO:
       console.log(`action.id`, action.id);
+      // NOTE: filter 는 state 자체를 변화시키지 않음. (splice 는 state 자체를 변경)
       const newState = state.filter(toDo => toDo.id !== action.id);
       console.log(`state`, state);
       console.log(`newState`, newState);
@@ -86,6 +87,7 @@ const dispatchDeleteToDo = (e) => {
 const paintToDos = () => {
   const toDos = store2.getState();
   ul.innerHTML = "";
+
   toDos.forEach(toDo => {
     const li = document.createElement("li");
     const btn = document.createElement("button");
