@@ -26,14 +26,14 @@ function Home({ toDos, ...rest }) {
             <button type="submit">Add</button>
         </form>
         <ul>
-            {toDos.map(toDo => <ToDo key={toDo.id} {...toDo} />)}
+            {toDos?.map(toDo => <ToDo key={toDo.id} {...toDo} />)}
         </ul>
     </>
 }
 
 // store.getState()
 const mapStateToProps = (state, ownProps) => {
-    console.log(`Home state, ownProps`, state, ownProps);
+    console.log(`Home mapStateToProps state, ownProps`, state, ownProps);
     return { toDos: state, id: ownProps.id };
 }
 
