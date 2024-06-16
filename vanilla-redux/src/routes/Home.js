@@ -1,14 +1,21 @@
 import React from "react";
+import { connect } from "react-redux";
+import { actionCreators } from "../store";
+import ToDo from "../components/ToDo";
 // import { HashRouter as Router, Route } from "react-router-dom";
 
-function Home() {
+function Home({ toDos, ...rest }) {
+    console.log(`toDos`, toDos);
+    console.log(`rest`, rest);
     const [text, setText] = React.useState("");
     function onChange(e) {
         setText(e.target.value);
     }
     function onSubmit(e) {
         e.preventDefault();
-        console.log(text);
+        if ("" !== text) {
+            rest.addToDo(text);
+        }
         setText("");
     }
 
@@ -18,8 +25,23 @@ function Home() {
             <input type="text" value={text} onChange={onChange} />
             <button type="submit">Add</button>
         </form>
-        <ul></ul>
+        <ul>
+            {toDos.map(toDo => <ToDo key={toDo.id} {...toDo} />)}
+        </ul>
     </>
 }
 
-export default Home;
+// store.getState()
+const mapStateToProps = (state, ownProps) => {
+    console.log(`Home state, ownProps`, state, ownProps);
+    return { toDos: state, id: ownProps.id };
+}
+
+// store.dispatch()
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        addToDo: (text) => dispatch(actionCreators.addToDo(text))
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
