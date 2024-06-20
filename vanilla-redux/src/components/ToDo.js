@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { actionCreators, remove } from '../store';
+// import { actionCreators } from '../store';
+import { remove } from '../store';
 import { Link } from 'react-router-dom';
 
 

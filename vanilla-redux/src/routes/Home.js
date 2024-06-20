@@ -1,6 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
-import { actionCreators, add } from "../store";
+// import { actionCreators } from "../store";
+import { add } from "../store";
 import ToDo from "../components/ToDo";
 // import { HashRouter as Router, Route } from "react-router-dom";
 
@@ -39,6 +40,7 @@ const mapStateToProps = (state, ownProps) => {
 
 // store.dispatch()
 const mapDispatchToProps = (dispatch, ownProps) => {
+    console.log(`[Home mapDispatchToProps] ownProps`, ownProps);
     return {
         // addToDo: (text) => dispatch(actionCreators.addToDo(text))
         addToDo: (text) => dispatch(add(text))

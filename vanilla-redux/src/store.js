@@ -1,5 +1,6 @@
 // import { createStore } from "redux";
-import { configureStore, createAction, createReducer, createSlice } from "@reduxjs/toolkit"
+// import {  createReducer } from "@reduxjs/toolkit"
+import { configureStore, createAction, createSlice } from "@reduxjs/toolkit"
 
 const addToDo = createAction("ADD");
 const deleteToDo = createAction("DELETE");
@@ -45,7 +46,6 @@ const toDos = createSlice({
             state.push({ text: action.payload, id: Date.now() });
         },
         remove: (state, action) => state.filter(item => item.id !== action.payload),
-
     }
 })
 
